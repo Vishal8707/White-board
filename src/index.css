@@ -1,0 +1,42 @@
+.hover-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .hover-container:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: block;
+    white-space: nowrap;
+    width: auto;
+    max-width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .sticky-margin::after{
+    margin-left: 80px;
+  }
+  /* Default margin */
+  .default-margin::after {
+    margin-left: 60px;
+  }
+  
+  /* Optional: Additional adjustments for specific cases */
+  .short-start::after {
+    margin-left: 50px; /* Adjust as needed */
+  }
+  
+  /* Optional: Add a background color change on hover for better visual feedback */
+  .hover-container:hover {
+    background-color: #f9f9f9;
+  }
+  
