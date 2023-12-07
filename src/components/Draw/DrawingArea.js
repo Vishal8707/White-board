@@ -43,6 +43,8 @@ const DrawingArea = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedTextIndex, setSelectedTextIndex] = useState(null);
 
+  
+
   // Redo hooks
 
   // These hooks for arrow points
@@ -157,6 +159,7 @@ const DrawingArea = () => {
 
     // Convert the canvas to a data URL
     const dataURL = canvas.toDataURL("image/jpeg");
+    console.log("vhvhjv",dataURL)
 
     // Create a temporary link element
     const link = document.createElement("a");
@@ -177,8 +180,10 @@ const DrawingArea = () => {
 
   // Functions calling when the mouse click on the board start draawing
   const handleMouseDown = (e) => {
+    
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
+
 
     if (selectedTool === "line") {
       const newLine = {
@@ -253,6 +258,7 @@ const DrawingArea = () => {
       }
     }
   };
+
   // Functions calling when the mouse move on the board for start draawing
   const handleMouseMove = (e) => {
     if (!isDrawing.current) {
@@ -320,7 +326,9 @@ const DrawingArea = () => {
       setEndY(point.y);
     }
   };
+  
   //  // Functions calling when the mouse not click and start stop drawing
+  
   const handleMouseUp = (e) => {
     isDrawing.current = false;
     const stage = e.target.getStage();
@@ -607,6 +615,8 @@ const DrawingArea = () => {
     // setNotes(res)
   };
 
+  console.log("data11",draw)
+
   return (
     <>
       <div
@@ -618,7 +628,9 @@ const DrawingArea = () => {
         }}
       >
         {/* header of the board */}
-        <DrawerHeader />
+        <DrawerHeader
+        draw={draw}
+        />
         <div style={{ margin: "20px" }}>
           {/* options of the color */}
           {/* <HuePicker color={selectedColor} onChange={handleColorChange} /> */}
@@ -818,8 +830,8 @@ const DrawingArea = () => {
           <Stage
             width={window.innerWidth}
             height={window.innerHeight}
-            onMouseDown={handleMouseDown}
-            onMousemove={handleMouseMove}
+            onMouseDown={(e)=>handleMouseDown(e)}
+            onMouseMove={handleMouseMove}
             onMouseup={handleMouseUp}
             className="canvas-stage"
             ref={stageRef}

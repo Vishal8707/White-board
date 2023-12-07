@@ -14,22 +14,23 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import colorPopover from "./colorPopover";
 import "./drawingArea.css";
 
-const DrawerHeader = () => {
+const DrawerHeader = (props) => {
   const shareUrl = window.location.href;
   const [highlighted, setHighlighted] = useState(false);
   const [selectedColor, setSelectedColor] = useState("");
   const [isDayMode, setIsDayMode] = useState(true);
-
   const handleToggleMode = () => {
     setIsDayMode(!isDayMode);
   };
 
+
+  console.log("bvhubhub",props.draw)
   const sharePage = async () => {
     try {
       if (navigator.share) {
         await navigator.share({
           title: "Draw",
-          text: "Check out this page!",
+          text: `Check out this page ${props.draw}`,
           url: shareUrl,
         });
       } else {
